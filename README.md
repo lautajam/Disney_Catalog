@@ -1,3 +1,3 @@
-# Api of disney characters and movies/series.
+# Catalog of Disney characters and movies/series.
 
 IN CONSTRUCTION
