@@ -11,7 +11,7 @@
 	<groupId>com.lautajam</groupId>
 	<artifactId>api-disney</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-disney</name>
+	<name>api-disney-catalog</name>
 	<description>Api of disney characters and movies/series.</description>
 	<url/>
 	<licenses>

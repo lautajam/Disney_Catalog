@@ -1,13 +1,13 @@
-package com.lautajam.api_disney;
+package com.lautajam.api_disney_catalog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiDisneyApplication {
+public class ApiDisneyCatalogApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiDisneyApplication.class, args);
+		SpringApplication.run(ApiDisneyCatalogApplication.class, args);
 	}
 
 }
