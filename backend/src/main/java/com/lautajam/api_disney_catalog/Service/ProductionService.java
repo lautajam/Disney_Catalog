@@ -4,13 +4,13 @@
  */
 package com.lautajam.api_disney_catalog.Service;
 
-import com.lautajam.api_disney_catalog.Repository.ProductionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.lautajam.api_disney_catalog.Repository.IProductionRepository;
 
 @Service
 public class ProductionService {
     
     @Autowired
-    private ProductionRepository productionRepository;
+    private IProductionRepository productionRepository;
 }
