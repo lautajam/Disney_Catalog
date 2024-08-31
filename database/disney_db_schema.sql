@@ -5,7 +5,7 @@ USE disney_database;
 -- Create the `characters` table to store character information
 CREATE TABLE characters (
     characterId BIGINT AUTO_INCREMENT PRIMARY KEY, -- Primary key, auto-incremented
-    image LONGBLOB, -- Blob to store image data 
+    image VARCHAR(255), -- Store image URL
     charName VARCHAR(255), -- Name of the character
     age INT, -- Age of the character
     weight FLOAT, -- Weight of the character
@@ -15,7 +15,7 @@ CREATE TABLE characters (
 -- Create the `Production` table to store production information
 CREATE TABLE Production (
     productionId BIGINT AUTO_INCREMENT PRIMARY KEY, -- Primary key, auto-incremented
-	image LONGBLOB, -- Blob to store image data
+	image VARCHAR(255), -- Store image URL
     title VARCHAR(255), -- Title of the production
     cration_date DATE, -- Creation date of the production
     score INT -- Score or rating of the production
