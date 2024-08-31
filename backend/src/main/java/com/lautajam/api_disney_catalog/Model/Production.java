@@ -15,18 +15,19 @@ public class Production {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long productionId;
     
-    @Lob
-    private byte[] image;
     private String title;
     
     @Temporal(TemporalType.DATE)
     private Date cration_date;
+    
     private int score;
+    private String image;
+    
     
     @ManyToMany(mappedBy = "productions")
     private List<Character> characters = new ArrayList<>();
 
-    public Production(Long productionId, byte[] image, String title, Date cration_date, int score) {
+    public Production(Long productionId, String image, String title, Date cration_date, int score) {
         this.productionId = productionId;
         this.image = image;
         this.title = title;

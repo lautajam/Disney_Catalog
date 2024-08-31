@@ -13,12 +13,12 @@ public class Character {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long characterId;
-  
-    private String image;
+    
     private String charName;
     private int age;
     private float weight;
     private String history;
+    private String image;
 
     @ManyToMany
     @JoinTable(

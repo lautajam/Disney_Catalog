@@ -38,7 +38,7 @@ public class CharacterService implements ICharacterService{
      * Saves a character to the database
      * @param character The character to be saved
      */
-    @Override //No funciona
+    @Override
     public void saveCharacter(Character character) {
         characterRepository.save(character);
     }
