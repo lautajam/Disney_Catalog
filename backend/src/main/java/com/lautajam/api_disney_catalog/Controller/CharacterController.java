@@ -1,8 +1,8 @@
 /*
 CRUD
-/characters       | display picture and name of all characters DONE
+/characters       | display picture, name and ID of all characters DONE
 /character/create | create DONE
-/character/delete | delete TO DO NEXT
+/character/delete | delete DONE
 /character/update | update
 
 READ filters

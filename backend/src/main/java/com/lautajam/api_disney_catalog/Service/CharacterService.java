@@ -32,7 +32,7 @@ public class CharacterService implements ICharacterService{
         List<CharacterDTO> allCharactersDtoList = new ArrayList<CharacterDTO>();
        
         for (Character character: characterRepository.findAll())
-            allCharactersDtoList.add(new CharacterDTO(character.getCharName(), character.getImage()));
+            allCharactersDtoList.add(new CharacterDTO(character.getCharacterId(),  character.getCharName(), character.getImage()));
 
         return allCharactersDtoList;
     }
