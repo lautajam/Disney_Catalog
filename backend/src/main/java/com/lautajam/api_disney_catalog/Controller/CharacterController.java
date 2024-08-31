@@ -2,7 +2,7 @@
 CRUD
 /characters       | display picture and name of all characters DONE
 /character/create | create DONE
-/character/delete | delete
+/character/delete | delete TO DO NEXT
 /character/update | update
 
 READ filters

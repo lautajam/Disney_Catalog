@@ -29,19 +29,11 @@ public class CharacterService implements ICharacterService{
      */
     @Override
     public List<CharacterDTO> getAllCharacters() {
-        List<Character> allCharactersList = characterRepository.findAll();
         List<CharacterDTO> allCharactersDtoList = new ArrayList<CharacterDTO>();
-        
-        for (Character character: allCharactersList) {
-            CharacterDTO characterDto = new CharacterDTO();
-            
-            characterDto.setCharDtoName(character.getCharName());            
-            characterDto.setCharDtoImage(character.getImage());
-            
-            allCharactersDtoList.add(characterDto);
-        }
-        
-        
+       
+        for (Character character: characterRepository.findAll())
+            allCharactersDtoList.add(new CharacterDTO(character.getCharName(), character.getImage()));
+
         return allCharactersDtoList;
     }
     
