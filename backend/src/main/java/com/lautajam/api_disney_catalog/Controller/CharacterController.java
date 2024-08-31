@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -87,4 +89,22 @@ public class CharacterController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     } 
+    
+    /**
+    * Delete a character from the database by its ID.
+    *
+    * @param deletedCharacterId the ID of the character to be deleted.
+    * @return ResponseEntity with the status of the operation:
+    *         - HttpStatus.OK (200) if the character is successfully deleted.
+    *         - HttpStatus.INTERNAL_SERVER_ERROR (500) if there is a problem on the server.
+    */
+    @DeleteMapping("/characters/delete/{deletedCharacterId}")
+    public ResponseEntity<String> deleteCharacter(@PathVariable long deletedCharacterId){
+        try{
+            characterServ.deleteCharacter(deletedCharacterId);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>("Character deleted successfully", HttpStatus.OK);
+    }
 }
