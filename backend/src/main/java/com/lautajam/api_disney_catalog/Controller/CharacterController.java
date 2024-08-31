@@ -3,7 +3,7 @@ CRUD
 /characters       | display picture, name and ID of all characters DONE
 /character/create | create DONE
 /character/delete | delete DONE
-/character/update | update
+/character/update | update DONE
 
 READ filters
 /character/detail/{id}        | details of a character
@@ -22,11 +22,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.lautajam.api_disney_catalog.Model.Character;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -106,5 +108,26 @@ public class CharacterController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>("Character deleted successfully", HttpStatus.OK);
+    }
+    
+    /**
+    * Update an existing character in the database.
+    *
+    * @param updatedCharacter the character object containing the updated details.
+    * @return ResponseEntity with the status of the operation:
+    *         - HttpStatus.OK (200) if the character is successfully updated.
+    *         - HttpStatus.BAD_REQUEST (400) if the character ID is null.
+    *         - HttpStatus.INTERNAL_SERVER_ERROR (500) if there is a problem on the server.
+    */
+    @PutMapping("/characters/update")
+    public ResponseEntity<Character> updateCharacter(@RequestBody Character updatedCharacter){
+        try{
+            if(updatedCharacter.getCharacterId() == null)
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            characterServ.editCharacter(updatedCharacter);
+            return new ResponseEntity<>(updatedCharacter, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
