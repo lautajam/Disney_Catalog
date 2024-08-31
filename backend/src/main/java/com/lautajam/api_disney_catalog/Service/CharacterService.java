@@ -1,6 +1,7 @@
 
 package com.lautajam.api_disney_catalog.Service;
 
+import com.lautajam.api_disney_catalog.DTO.CharacterDTO;
 import com.lautajam.api_disney_catalog.Service.Interfaces.ICharacterService;
 import java.util.List;
 import com.lautajam.api_disney_catalog.Model.Character;
@@ -9,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.lautajam.api_disney_catalog.Repository.ICharacterRepository;
 import jakarta.persistence.EntityNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.io.InputStream;
+import java.util.ArrayList;
 
 @Service
 public class CharacterService implements ICharacterService{
@@ -29,9 +28,21 @@ public class CharacterService implements ICharacterService{
      * @return A list of all characters in the database
      */
     @Override
-    public List<Character> getAllCharacters() {
+    public List<CharacterDTO> getAllCharacters() {
         List<Character> allCharactersList = characterRepository.findAll();
-        return allCharactersList;
+        List<CharacterDTO> allCharactersDtoList = new ArrayList<CharacterDTO>();
+        
+        for (Character character: allCharactersList) {
+            CharacterDTO characterDto = new CharacterDTO();
+            
+            characterDto.setCharDtoName(character.getCharName());            
+            characterDto.setCharDtoImage(character.getImage());
+            
+            allCharactersDtoList.add(characterDto);
+        }
+        
+        
+        return allCharactersDtoList;
     }
     
     /**

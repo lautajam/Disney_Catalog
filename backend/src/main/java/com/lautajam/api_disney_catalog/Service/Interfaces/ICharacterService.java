@@ -1,6 +1,7 @@
 
 package com.lautajam.api_disney_catalog.Service.Interfaces;
 
+import com.lautajam.api_disney_catalog.DTO.CharacterDTO;
 import java.util.List;
 import com.lautajam.api_disney_catalog.Model.Character;
 public interface ICharacterService {
@@ -9,7 +10,7 @@ public interface ICharacterService {
      * Returns a list of all Characters in the database.
      * @return A list of all characters in the database
      */
-    public List<Character> getAllCharacters();
+    public List<CharacterDTO> getAllCharacters();
     
     /**
      * Saves a character to the database

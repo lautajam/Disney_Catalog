@@ -1,7 +1,7 @@
 /*
 CRUD
-/characters       | display picture and name of all characters (now show all FIX)
-/character/create | create
+/characters       | display picture and name of all characters DONE
+/character/create | create DONE
 /character/delete | delete
 /character/update | update
 
@@ -15,6 +15,7 @@ GET/character?movies=idMovies | search character by movies
 package com.lautajam.api_disney_catalog.Controller;
 
 import com.lautajam.api_disney_catalog.Service.CharacterService;
+import com.lautajam.api_disney_catalog.DTO.CharacterDTO;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,17 +52,17 @@ public class CharacterController {
      */
     @GetMapping("/characters")
     @ResponseBody
-    public ResponseEntity<List<Character>> getAllCharacters(){
-        List<Character> allCharacterList = new ArrayList<>();
+    public ResponseEntity<List<CharacterDTO>> getAllCharacters(){
+        List<CharacterDTO> allCharacterDtoList = new ArrayList<>();
         
         try{
-            allCharacterList = characterServ.getAllCharacters();
+            allCharacterDtoList = characterServ.getAllCharacters();
         } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
-        if(!allCharacterList.isEmpty())
-            return new ResponseEntity<>(allCharacterList, HttpStatus.OK);
+        if(!allCharacterDtoList.isEmpty())
+            return new ResponseEntity<>(allCharacterDtoList, HttpStatus.OK);
         else
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
