@@ -1,4 +1,10 @@
 /*
+CRUD
+/characters       | display picture and name of all characters (now show all FIX)
+/character/create | create
+/character/delete | delete
+/character/update | update
+
 READ filters
 /character/detail/{id}        | details of a character
 GET/character?name=name       | search for character by name
@@ -15,11 +21,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.lautajam.api_disney_catalog.Model.Character;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
+@RequestMapping("/disney-catalog/")
 public class CharacterController {
     
     /**
@@ -54,4 +65,31 @@ public class CharacterController {
         else
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+        
+    @PostMapping("/characters/create")
+    public ResponseEntity<Character> createCharacter(@RequestBody Map<String, Object> requestBody) {
+        try{
+            String imageUrl = (String) requestBody.get("imageUrl");
+            String charName = (String) requestBody.get("charName");
+            Integer age = (Integer) requestBody.get("age");
+            Float weight = ((Number) requestBody.get("weight")).floatValue();
+            String history = (String) requestBody.get("history");
+            
+            Character newCharacter = new Character(charName, age, weight, history);
+            
+            System.out.println("Cree el character");
+            
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                System.out.println("ImageURL es diferente de null");
+                byte[] imageBytes = characterServ.downloadImageFromUrl(imageUrl);
+                System.out.println("aaaaaaaaaaaaa");
+                newCharacter.setImage(imageBytes);
+            }
+   
+            characterServ.saveCharacter(newCharacter);
+            return new ResponseEntity<>(newCharacter, HttpStatus.CREATED);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    } 
 }

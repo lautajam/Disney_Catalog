@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
     
-    @GetMapping
-    public String HelloController(){
-        return "Hello world! This is my project Controller";
+    @GetMapping("/")
+    public String entryDisneyCatalog(){
+        return "Hello! This is a Disney-Catalog API";
     }
 }

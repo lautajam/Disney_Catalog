@@ -28,6 +28,13 @@ public class Character {
         inverseJoinColumns = @JoinColumn(name = "productionId", nullable=false)
     )
     private List<Production> productions = new ArrayList<>();
+    
+    public Character(String charName, int age, float weight, String history) {
+        this.charName = charName;
+        this.age = age;
+        this.weight = weight;
+        this.history = history;
+    }
 
     public Character(Long characterId, byte[] image, String charName, int age, float weight, String history) {
         this.characterId = characterId;
