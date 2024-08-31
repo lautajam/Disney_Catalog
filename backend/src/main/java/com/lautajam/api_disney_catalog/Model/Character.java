@@ -13,9 +13,8 @@ public class Character {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long characterId;
-    
-    @Lob
-    private byte[] image;
+  
+    private String image;
     private String charName;
     private int age;
     private float weight;
@@ -29,14 +28,8 @@ public class Character {
     )
     private List<Production> productions = new ArrayList<>();
     
-    public Character(String charName, int age, float weight, String history) {
-        this.charName = charName;
-        this.age = age;
-        this.weight = weight;
-        this.history = history;
-    }
 
-    public Character(Long characterId, byte[] image, String charName, int age, float weight, String history) {
+    public Character(Long characterId, String image, String charName, int age, float weight, String history) {
         this.characterId = characterId;
         this.image = image;
         this.charName = charName;

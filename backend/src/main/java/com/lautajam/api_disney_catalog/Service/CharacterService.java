@@ -38,7 +38,7 @@ public class CharacterService implements ICharacterService{
      * Saves a character to the database
      * @param character The character to be saved
      */
-    @Override
+    @Override //No funciona
     public void saveCharacter(Character character) {
         characterRepository.save(character);
     }
@@ -53,26 +53,10 @@ public class CharacterService implements ICharacterService{
     }
     
     /**
-    * Downloads an image from the specified URL and returns its data as a byte array.
-    * This method opens a connection to the given URL, reads the image data, and converts it 
-    * into a byte array which can then be used for further processing or storage.
-    *
-    * @param imageUrl The URL of the image to download.
-    * @return byte array containing the image data.
-    * @throws IOException If an error occurs while opening the URL or reading the data.
-    */
-    public byte[] downloadImageFromUrl(String imageUrl) throws IOException {
-        URL url = new URL(imageUrl);
-        try (InputStream in = url.openStream()) {
-            return in.readAllBytes();
-        }
-    }
-    
-    /**
      * Updates a character with the give a area.
      * @param character The area to be updated
      */
-    @Override //No funciona
+    @Override
     public void editCharacter(Character character) {
         if (character.getCharacterId() != null && characterRepository.existsById(character.getCharacterId())) {
             // Retrieve the existing character from the database

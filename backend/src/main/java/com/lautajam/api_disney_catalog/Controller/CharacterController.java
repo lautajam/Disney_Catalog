@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.lautajam.api_disney_catalog.Model.Character;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,25 +66,8 @@ public class CharacterController {
     }
         
     @PostMapping("/characters/create")
-    public ResponseEntity<Character> createCharacter(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<Character> createCharacter(@RequestBody Character newCharacter) {
         try{
-            String imageUrl = (String) requestBody.get("imageUrl");
-            String charName = (String) requestBody.get("charName");
-            Integer age = (Integer) requestBody.get("age");
-            Float weight = ((Number) requestBody.get("weight")).floatValue();
-            String history = (String) requestBody.get("history");
-            
-            Character newCharacter = new Character(charName, age, weight, history);
-            
-            System.out.println("Cree el character");
-            
-            if (imageUrl != null && !imageUrl.isEmpty()) {
-                System.out.println("ImageURL es diferente de null");
-                byte[] imageBytes = characterServ.downloadImageFromUrl(imageUrl);
-                System.out.println("aaaaaaaaaaaaa");
-                newCharacter.setImage(imageBytes);
-            }
-   
             characterServ.saveCharacter(newCharacter);
             return new ResponseEntity<>(newCharacter, HttpStatus.CREATED);
         } catch (Exception e){
