@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "fb5a8213-97f4-4725-ae89-fef26e594966",
+		"name": "DisneyCatalog_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30379007"
+	},
+	"item": [
+		{
+			"name": "Character",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "http://localhost:8080/disney-catalog/characters",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/disney-catalog/characters",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"disney-catalog",
+										"characters"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/disney-catalog/characters/create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 500\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(500);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response has a valid XML content type\", function () {\r",
+											"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/xml\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response body is not null\", function () {\r",
+											"    const responseData = xml2Json(pm.response.text());\r",
+											"    \r",
+											"    pm.expect(responseData).to.not.be.null;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"charName\": \"Dale\",\r\n    \"age\": 5,\r\n    \"weight\": 1.2,\r\n    \"history\": \"El compañero de travesuras de Chip, siempre ideando nuevas formas de conseguir nueces.\",\r\n    \"image\": \"https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chip_and_Dale.png/1200px-Chip_and_Dale.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/disney-catalog/characters/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"disney-catalog",
+										"characters",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/disney-catalog/characters/delete/1",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/disney-catalog/characters/delete/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"disney-catalog",
+										"characters",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/disney-catalog/characters/update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 500\", function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 500ms\", function () {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response content type is text/xml\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/xml\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response body matches the expected schema for error response\", function () {\r",
+											"    const responseData = xml2Json(pm.response.text());\r",
+											"\r",
+											"    pm.expect(responseData).to.be.an('object');\r",
+											"    pm.expect(responseData.error).to.exist.and.to.be.a('string');\r",
+											"    pm.expect(responseData.message).to.exist.and.to.be.a('string');\r",
+											"    pm.expect(responseData.code).to.exist.and.to.be.a('number');\r",
+											"});\r",
+											"// Test to check if the response contains a specific header\r",
+											"pm.test(\"Specific header is present in the response\", function() {\r",
+											"    pm.expect(pm.response.headers.has('X-Request-Id')).to.be.true;\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"characterId\": 3,\r\n    \"charName\": null,\r\n    \"age\": null,\r\n    \"weight\": null,\r\n    \"history\": null,\r\n    \"image\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/disney-catalog/characters/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"disney-catalog",
+										"characters",
+										"update"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
