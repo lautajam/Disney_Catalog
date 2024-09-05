@@ -4,6 +4,7 @@ package com.lautajam.api_disney_catalog.Service.Interfaces;
 import com.lautajam.api_disney_catalog.DTO.CharacterDTO;
 import java.util.List;
 import com.lautajam.api_disney_catalog.Model.Character;
+
 public interface ICharacterService {
     
     /**

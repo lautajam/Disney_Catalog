@@ -18,7 +18,7 @@ public class Production {
     private String title;
     
     @Temporal(TemporalType.DATE)
-    private Date cration_date;
+    private Date crationDate;
     
     private int score;
     private String image;
@@ -27,11 +27,11 @@ public class Production {
     @ManyToMany(mappedBy = "productions")
     private List<Character> characters = new ArrayList<>();
 
-    public Production(Long productionId, String image, String title, Date cration_date, int score) {
+    public Production(Long productionId, String image, String title, Date crationDate, int score) {
         this.productionId = productionId;
         this.image = image;
         this.title = title;
-        this.cration_date = cration_date;
+        this.crationDate = crationDate;
         this.score = score;
     }
 }
